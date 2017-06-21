@@ -1,0 +1,12 @@
+[submodule "libjson2c"]
+	path = libjson2c
+	url = https://github.com/chapatt/libjson2c
+[submodule "jsmin"]
+	path = jsmin
+	url = https://github.com/chapatt/jsmin
+[submodule "jsmn"]
+	path = jsmn
+	url = https://github.com/chapatt/jsmn
+[submodule "cpdlldeps"]
+	path = cpdlldeps
+	url = https://github.com/chapatt/cpdlldeps

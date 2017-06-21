@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=snman
+Icon=snman
+StartupNotify=true
+Exec=@bindir@/snman

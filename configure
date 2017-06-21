@@ -1,0 +1,36 @@
+case "$1" in
+	"")
+		prefix=""
+		;;
+	"--host="?*)
+		prefix=${1#"--host="}-
+		;;
+	*)
+		echo "Usage: [--host=arch]"
+		exit
+		;;
+esac
+
+if [ `command -v $prefix"gcc"` ]; then
+	echo Found gcc
+else
+	echo Could not find gcc
+	exit
+fi
+
+if [ `command -v $prefix"pkg-config"` ]; then
+	echo Found pkg-config
+else
+	echo Could not find pkg-config
+	exit
+fi
+
+if [ `command -v $prefix"ar"` ]; then
+	echo Found ar
+else
+	echo Could not find ar
+	exit
+fi
+
+echo Generating Makefile...
+printf "CC=%sgcc\nPKGCONFIG=%spkg-config\nAR=%sar\n" "$prefix" "$prefix" "$prefix" | cat - Makefile.in > Makefile

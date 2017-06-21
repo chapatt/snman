@@ -1,0 +1,44 @@
+GLIB_COMPILE_RESOURCES=$(shell $(PKGCONFIG) --variable=glib_compile_resources gio-2.0)
+CFLAGS=$(shell $(PKGCONFIG) --cflags gtk+-3.0) -Ijsmn -D_GNU_SOURCE -std=c89 -Wall
+
+BUILT_LIBS=jsmin/libjsmin.a jsmn/libjsmn.a libjson2c/libjson2c.a
+LIBS=$(shell $(PKGCONFIG) --libs gtk+-3.0) $(BUILT_LIBS) -lcurl
+
+SRC=main.c snman-application.c snman-window.c snman-log-text-view.c snman-hosts-toolbar.c snman-command-store.c snman-config.c snman-hosts-tree-view.c snman-curl.c snman-hosts-icon-view.c snman-log-entry.c snman-log-link.c
+BUILT_SRC=snman-resources.c
+
+OBJS=$(BUILT_SRC:.c=.o) $(SRC:.c=.o)
+
+all: snman
+
+snman-resources.c: resources/snman.gresource.xml resources/snman-window.ui
+	$(GLIB_COMPILE_RESOURCES) resources/snman.gresource.xml --target=$@ --sourcedir=resources --generate-source
+
+%.o: %.c
+	$(CC) -c -o $(@F) $(CFLAGS) $<
+
+jsmin/libjsmin.a:
+	make CC=$(CC) AR=$(AR) -C jsmin
+
+jsmn/libjsmn.a:
+	make CC=$(CC) AR=$(AR) -C jsmn
+
+libjson2c/libjson2c.a:
+	make CFLAGS='-I../jsmn' -C libjson2c tests
+	make CC=$(CC) AR=$(AR) CFLAGS='-I../jsmn' -C libjson2c
+
+snman: $(OBJS) $(BUILT_LIBS)
+	$(CC) -o $@ $(OBJS) $(LIBS)
+	PATH=$$PATH:/usr/x86_64-w64-mingw32/bin && cpdlldeps/cpdlldeps.sh $@
+
+clean:
+	make -C jsmin clean
+	make -C jsmn clean
+	make -C libjson2c clean
+	rm -f $(BUILT_SRC)
+	rm -f $(OBJS)
+	rm -f snman
+	rm -f *.dll
+
+distclean: clean
+	rm -f Makefile

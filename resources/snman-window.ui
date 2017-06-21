@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="SnmanWindow" parent="GtkApplicationWindow">
+    <property name="visible">True</property>
+    <property name="title" translatable="no">sbkctl</property>
+    <property name="default-width">700</property>
+    <property name="default-height">600</property>
+    <child>
+      <object class="GtkBox" id="main_box">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkHeaderBar" id="header_bar">
+            <child type="title">
+              <object class="GtkStackSwitcher" id="function_stack_switcher">
+                <property name="visible">True</property>
+                <property name="stack">function_stack</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkPaned" id="main_paned">
+            <property name="visible">True</property>
+            <property name="orientation">vertical</property>
+            <property name="wide-handle">True</property>
+            <property name="expand">True</property>
+            <child>
+              <object class="GtkStack" id="function_stack">
+                <property name="visible">True</property>
+                <child>
+                  <object class="GtkBox" id="hosts_box">
+                    <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
+<!--
+                    <child>
+                      <object class="GtkToolbar" id="hosts_toolbar">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+-->
+                    <child>
+                      <object class="GtkNotebook" id="hosts_notebook">
+                        <property name="visible">True</property>
+                        <property name="show-tabs">False</property>
+                        <child>
+                          <object class="GtkScrolledWindow" id="hosts_icon_scroll">
+<!--
+                            <child>
+                            <object class="GtkIconView" id="hosts_iconview">
+                                <property name="visible">True</property>
+                                <property name="columns">-1</property>
+                                <property name="selection-mode">GTK_SELECTION_MULTIPLE</property>
+                                <property name="item-width">75</property>
+                                <property name="expand">True</property>
+                              </object>
+                            </child>
+-->
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkScrolledWindow" id="hosts_tree_scroll">
+<!--
+                            <child>
+                              <object class="GtkTreeView" id="hosts_treeview">
+                                <property name="visible">True</property>
+                              </object>
+                            </child>
+-->
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+		  <packing>
+                    <property name="title">Hosts</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkTreeView" id="tasks_treeview">
+                    <property name="visible">True</property>
+                  </object>
+		  <packing>
+                    <property name="title">Tasks</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow" id="log_scroll">
+<!--
+                <child>
+                  <object class="GtkTextView" id="log_text_view">
+                    <property name="visible">True</property>
+                  </object>
+                </child>
+-->
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

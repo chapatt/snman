@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/nl/openjr/snman">
+    <file preprocess="xml-stripblanks">snman-window.ui</file>
+    <file preprocess="xml-stripblanks">snman-hosts-icon-view.ui</file>
+  </gresource>
+</gresources>

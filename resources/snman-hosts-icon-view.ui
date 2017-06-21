@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="SnmanHostsIconView" parent="GtkIconView">
+    <property name="visible">True</property>
+    <property name="columns">-1</property>
+    <property name="selection-mode">GTK_SELECTION_MULTIPLE</property>
+    <property name="item-width">75</property>
+    <property name="expand">True</property>
+  </template>
+</interface>
