@@ -74,7 +74,7 @@ static gboolean snman_log_text_view_button_press(GtkWidget	*self,
 					   x_buf,
 					   y_buf);
 	tag_table = gtk_text_buffer_get_tag_table(SNMAN_LOG_TEXT_VIEW(self)->buffer);
-	link_tag = gtk_text_tag_table_lookup (tag_table, "link");
+	link_tag = gtk_text_tag_table_lookup(tag_table, "link");
 	if (gtk_text_iter_has_tag(&iter, link_tag))
 		g_print("Link clicked!\n");
 

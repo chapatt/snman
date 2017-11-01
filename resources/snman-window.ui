@@ -2,7 +2,7 @@
 <interface>
   <template class="SnmanWindow" parent="GtkApplicationWindow">
     <property name="visible">True</property>
-    <property name="title" translatable="no">sbkctl</property>
+    <property name="title" translatable="no">snman</property>
     <property name="default-width">700</property>
     <property name="default-height">600</property>
     <child>
